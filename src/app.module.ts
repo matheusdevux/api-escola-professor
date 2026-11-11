@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { AlunosModule } from './alunos/alunos.module.js';
+import { MongooseModule } from "@nestjs/mongoose";
+import { AlunosModule } from './alunos/alunos.module.js'
 
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/escola_dbn'),
+    MongooseModule.forRoot('mongodb://localhost:27017/escola_db1'),
     AlunosModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

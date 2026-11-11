@@ -8,21 +8,20 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
-    forbidNonWhitelisted: true, 
+    forbidNonWhitelisted: true,
     transform: true,
   }));
 
-  //!Configuração do Swagger
+  //! configuração do Swagger
   const config = new DocumentBuilder()
-  .setTitle('API escolar')
+  .setTitle('API Escola')
   .setDescription('API para gerenciamento de alunos')
-  .setVersion('1.0')
+  .setVersion('1.0.0')
   .addTag('alunos')
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
 
   await app.listen(process.env.PORT ?? 3000);
 }

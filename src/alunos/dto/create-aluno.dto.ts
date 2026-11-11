@@ -1,55 +1,57 @@
-import { IsString, 
-         IsNotEmpty,
-         IsInt,
-         Min,
-         IsArray,
-         ArrayMinSize } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-
+import  { IsString, 
+          IsInt, 
+          IsNotEmpty,
+          IsArray,
+          Min,
+          ArrayMinSize, 
+        } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAlunoDto {
     
-    @ApiProperty({
-        example: 'Matheus Sousa',
-        description: 'Nome do aluno',
-    })
+        @ApiProperty({
+            example: 'João da Silva',
+            description: 'Nome completo do aluno',
+        })
     @IsString()
     @IsNotEmpty({
-        message:'O nome é obrigatório e não pode estar vazio!'
+        message: 'O nome é Obrigatório e não pode ser vazio.'
     })
     nome: string;
-
+    
     @ApiProperty({
-        example: 30,
+        example: 25,
         description: 'Idade do aluno',
     })
     @IsInt({
-        message:'A idade deve ser um numero inteiro'
+        message: 'A idade deve ser um número inteiro.'
     })
     @Min(0,{
-        message:'A idade não pode ser negativa.'
+        message: 'A idade não pode ser negativa.'
     })
     idade: number;
     
     @ApiProperty({
-        example: '9999',
-        description: 'Matricula do aluno',
+        example: '1234',
+        description: 'Matrícula do aluno',
     })
     @IsString()
     @IsNotEmpty({
-        message:'A Matricula é Obrigatória'
+        message: 'A matrícula é Obrigatória e não pode ser vazia.'
     })
     matricula: string;
-
+    
     @ApiProperty({
-        example: ['Ciência da Computação', 'Letras Português'],
-        description: 'Cursos em que o aluno está matriculado'
+        example: ['Ciência da Computação', 'Recursos Humanos'],
+        description: 'Cursos em que o aluno está matriculado',
     })
-    @IsString({each: true, message:'Cada curso deve ser um texto'})
     @IsArray()
+    @IsString({
+        each:true,
+        message: 'Cada curso deve ser uma texto.'
+    })
     @ArrayMinSize(1,{
-        message:'O aluno deve estar matriculado em pelo menos um curso'
+        message: 'O aluno deve estar matriculado em pelo menos um curso.'
     })
     cursos: string[];
-    
 }
